@@ -10,7 +10,7 @@ const Save = (movieID) =>
     try {
         fs.writeFileSync('./data.json', JSON.stringify({ favorites }))
         status = true // Si tout s'est bien passé, on renvoie true
-    } catch (error) {
+    } catch (error) { 
         console.log(error)
         throw error // Si une erreur survient, on la renvoie
     }
