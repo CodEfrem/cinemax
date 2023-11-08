@@ -7,8 +7,7 @@
 
 // ------------------------- IMPORTS ------------------------- //
 const express = require("express"); // Framework pour NodeJS
-const app = express(); // Creation de l'application
-const cors = require("cors"); // Module pour gérer le CORS
+const app = express(); // Création de l'application
 const PORT = 3002; // Définition du port d'écoute
 const fs = require("fs"); // Module pour gérer les fichiers
 const Save = require("./functions/Save"); // Importation de la fonction Save
@@ -27,12 +26,8 @@ const Save = require("./functions/Save"); // Importation de la fonction Save
  * 
  * Le paramètre extended à true permet de récupérer les données envoyées
  * par le formulaire sous la forme d'un objet.
- * 
- * Par la même occasion nous allons aussi mettre à disposition le CORS
- * sur notre serveur après l'avoir installé. On utilisera encore la méthode
- * `.use`n
  */
-app.use(express.urlencoded({ extended: true }),cors());
+app.use(express.urlencoded({ extended: true }));
 
 // Route permettant de traiter l'enregistrement d'un film dans la liste des favoris
 app.post("/api/save", (req, res) => {
@@ -46,19 +41,11 @@ app.post("/api/save", (req, res) => {
   }
 });
 
-//Route d'accès aux données de data.json
-app.get("/api/favorites",(req, res) => {
-  res.sendFile(__dirname + "/data.json");
-});
-
-
-
 // Route permettant de traiter la suppression d'un film dans la liste des favoris
-
- app.post("/api/delete", (req, res) => {
-   const imdbID = req.body // On récupère les données envoyées par le formulaire
-   Delete(imdbID); // On appelle la fonction Delete en lui envoyant les données
-   });
+// app.post("/api/delete", (req, res) => {
+//   const imdbID = req.body // On récupère les données envoyées par le formulaire
+//   Delete(imdbID); // On appelle la fonction Delete en lui envoyant les données
+// });
 
 
 /** Lancement du serveur
